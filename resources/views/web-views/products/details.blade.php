@@ -202,6 +202,7 @@
         <!-- General info tab-->
         <div class="row" style="direction: ltr">
             <!-- Product gallery-->
+            
             <div class="col-md-9 col-12">
                 <div class="row">
                     <div class="col-lg-5 col-md-4 col-12">
