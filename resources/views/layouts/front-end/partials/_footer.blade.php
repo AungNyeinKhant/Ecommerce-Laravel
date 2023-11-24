@@ -136,7 +136,7 @@
 
 
 <footer class="page-footer font-small mdb-colorrtl">
-    <!-- Footer Links -->
+    <!-- Footer Links -->asdadas
     <div style="background:{{$web_config['primary_color']}}20;padding-top:30px;">
         <div class="container text-center" style="padding-bottom: 13px;">
 

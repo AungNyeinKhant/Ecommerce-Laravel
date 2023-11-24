@@ -68,8 +68,8 @@
                 </div>
             </div>
             <!-- End Admin Wallet -->
-
-{{--            <div class="user-overview-wrap mb-2">--}}
+    asdasd
+    {{--            <div class="user-overview-wrap mb-2">--}}
 {{--                <div class="card">--}}
 {{--                    <div class="card-body">--}}
 {{--                        <div class="row g-2 align-items-center">--}}
@@ -107,7 +107,7 @@
 {{--                        <div class="chartjs-custom mt-2">--}}
 {{--                            <canvas id="order_statictics" height="340"></canvas>--}}
 {{--                        </div>--}}
-{{--                        <!-- End Bar Chart -->--}}
+{{--                        <!-- End Bar Chart -->--}}ASDADS
 {{--                    </div>--}}
 {{--                </div>--}}
 {{--                <div class="card">--}}
@@ -123,7 +123,7 @@
 {{--                </div>--}}
 {{--            </div>--}}
 
-            <div class="row g-1">
+<div class="row g-1">
                 <div class="col-12">
                     <!-- Card -->
                     <div class="card">

@@ -428,9 +428,16 @@ class BusinessSettingsController extends Controller
         }
         return back();
     }
+    //Edited by ANK
+    public function stores(){
+        return view("admin-views.business-settings.mobile-stores");
+    }
 
     public function update(Request $request, $name)
     {
+        logger("dfsd");
+        logger("fjsdjnlf " . $request);
+        
 
         if ($name == 'download_app_apple_stroe') {
             $download_app_store = BusinessSetting::where('type', 'download_app_apple_stroe')->first();
@@ -483,7 +490,8 @@ class BusinessSettingsController extends Controller
         }
         Toastr::success('App Store Updated successfully');
 
-        return back();
+
+        return ;
     }
 
     public function updateCompanyPhone(Request $data)

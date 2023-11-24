@@ -23,6 +23,7 @@ Route::get('maintenance-mode', 'Web\WebController@maintenance_mode')->name('main
 
 Route::group(['namespace' => 'Web', 'middleware' => ['maintenance_mode']], function () {
     Route::get('/', 'WebController@home')->name('home');
+    Route::get('/2', 'WebController@home2')->name('home2');
 
     Route::get('quick-view', 'WebController@quick_view')->name('quick-view');
     Route::get('searched-products', 'WebController@searched_products')->name('searched-products');

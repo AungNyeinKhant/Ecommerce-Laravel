@@ -17,6 +17,15 @@ class ProductManager
         return Product::active()->with(['rating'])->where('id', $id)->first();
     }
 
+    public static function get_all_product()
+    {
+        $products = Product::active()->with(['rating']);
+        return [
+            
+            'products' => $products->get()
+        ];
+    }
+
     public static function get_latest_products($limit = 10, $offset = 1)
     {
         $paginator = Product::active()->with(['rating'])->latest()->paginate($limit, ['*'], 'page', $offset);

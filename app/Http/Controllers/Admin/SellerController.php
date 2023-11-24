@@ -11,6 +11,7 @@ use App\Model\Order;
 use App\Model\OrderDetail;
 use App\Model\Product;
 use App\Model\Seller;
+use App\Model\Shop;
 use App\Model\WithdrawRequest;
 use App\Model\SellerWallet;
 use Brian2694\Toastr\Facades\Toastr;
@@ -165,6 +166,17 @@ class SellerController extends Controller
             return view('admin-views.seller.view.review', compact('seller', 'reviews', 'search'));
         }
         return view('admin-views.seller.view', compact('seller'));
+    }
+
+    public function updateBlue(Request $request){
+        $shop = Shop::where(['id' => $request['id']])->first();
+        $success = 1;
+        $shop->blue_m = $request['status'];
+        $shop->save();
+        return response()->json([
+            'success' => $success,
+        ], 200);
+        
     }
 
     public function updateStatus(Request $request)

@@ -18,6 +18,6 @@ class BrandManager
     }
 
     public static function get_active_brands(){
-        return Brand::active()->withCount('brandProducts')->latest()->get();
+        return Brand::active()->withCount('brandProducts')->orderByRaw('CASE WHEN id = 2 THEN 0 ELSE 1 END,id DESC')->get();
     }
 }

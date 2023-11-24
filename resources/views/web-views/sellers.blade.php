@@ -65,6 +65,11 @@
                 <!-- Products grid-->
                 <div class="row mx-n2" style="min-height: 200px">
                     @foreach($sellers as $shop)
+                        @php
+                            if($shop->id == 1){
+                                continue;
+                            }
+                        @endphp
                         <div class="col-lg-2 col-md-3 col-sm-4 col-6 px-2 pb-4 text-center">
                             <div class="card-body shadow">
                                 <a href="{{route('shopView',['id'=>$shop['seller_id']])}}">

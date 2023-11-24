@@ -28,6 +28,13 @@ class ProductController extends Controller
         return response()->json($products, 200);
     }
 
+    public function get_all_products(Request $request)
+    {
+        $products = ProductManager::get_all_product();//$request['limit'], $request['offset']
+        $products['products'] = Helpers::product_data_formatting($products['products'], true);
+        return response()->json($products, 200);
+    }
+
     public function get_featured_products(Request $request)
     {
         $products = ProductManager::get_featured_products($request['limit'], $request['offset']);

@@ -254,6 +254,19 @@
             </div>
             @if($seller->shop)
                 <div class="col-md-6 mt-2 mt-md-0">
+                    This is where i find
+                    <div class="row">
+                        <div class="col-6"><h5>Blue Mark</h5></div>
+                        <div class="col-6">
+                            <label class="mx-auto switcher">
+                                <input type="checkbox" class="switcher_input bmark"
+                                id="{{$seller->shop->id}}" {{ $seller->shop->blue_m == 1?'checked':'' }}
+                                        >
+                                        <!--   -->
+                                <span class="switcher_control"></span>
+                            </label>
+                        </div>
+                    </div>
                     <div class="card">
                         <div class="card-header">
                             <h5 class="mb-0">{{\App\CPU\translate('Shop')}} {{\App\CPU\translate('info')}}</h5>
@@ -318,5 +331,35 @@
 @endsection
 
 @push('script')
-
+    <script>
+        $(document).on('change', '.bmark', function () {
+            var id = $(this).attr("id");
+            if ($(this).prop("checked") === true) {
+                var status = 1;
+            } else if ($(this).prop("checked") === false) {
+                var status = 0;
+            }
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "{{route('admin.sellers.updateBlue')}}",
+                method: 'POST',
+                data: {
+                    id: id,
+                    status: status
+                },
+                success: function (data) {
+                    if (data.success == true) {
+                        toastr.success('{{\App\CPU\translate('Blue Mark status updated successfully')}}');
+                    } else {
+                        toastr.error('{{\App\CPU\translate('Blue mark status updated failed. Product must be approved')}}');
+                        location.reload();
+                    }
+                }
+            });
+        });
+    </script>
 @endpush

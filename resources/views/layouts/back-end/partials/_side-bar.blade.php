@@ -909,6 +909,14 @@
                             </span>
                             </a>
                         </li>
+
+                        <li class="navbar-vertical-aside-has-menu {{(Request::is('admin/business-settings/mail') || Request::is('admin/business-settings/sms-module') || Request::is('admin/business-settings/captcha') || Request::is('admin/social-login/view') || Request::is('admin/business-settings/map-api') || Request::is('admin/business-settings/payment-method') || Request::is('admin/business-settings/fcm-index'))?'active':''}}">
+                            <a class="nav-link " href="{{route('admin.business-settings.mobile-stores')}}"
+                               title="mobile_stores">
+                                <span class="tio-key nav-icon"></span>
+                                <span class="text-truncate"> Mobile Stores </span>
+                            </a>
+                        </li>
                         @endif
                         <!--System Settings end-->
 

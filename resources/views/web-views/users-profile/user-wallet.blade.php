@@ -148,10 +148,10 @@
                                 </thead>
     
                                 <tbody>
-                                @foreach($wallet_transactio_list as $key=>$item)
+                                @foreach($wallet_transaction_list as $key=>$item)
                                     <tr>
                                         <td class="bodytr">
-                                            {{$wallet_transactio_list->firstItem()+$key}}
+                                            {{$wallet_transaction_list->firstItem()+$key}}
                                         </td>
                                         <td class="bodytr"><span class="text-capitalize">{{str_replace('_', ' ',$item['transaction_type'])}}</span></td>
                                         <td class="bodytr"><span class="">{{\App\CPU\Helpers::currency_converter($item['credit'])}}</span></td>
@@ -163,12 +163,12 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            @if($wallet_transactio_list->count()==0)
+                            @if($wallet_transaction_list->count()==0)
                                 <center class="mt-3 mb-2">{{\App\CPU\translate('no_transaction_found')}}</center>
                             @endif
 
                             <div class="card-footer">
-                                {{$wallet_transactio_list->links()}}
+                                {{$wallet_transaction_list->links()}}
                             </div>
                         </div>
                         

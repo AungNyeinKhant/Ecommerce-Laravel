@@ -343,7 +343,8 @@ class DashboardController extends Controller
                 'seller_is' => 'seller',
                 'status' => 'disburse'
             ])->select(
-                DB::raw('seller_amount'),
+                DB::raw('IFNULL(sum(seller_amount),0) as sums'),
+                //DB::raw('seller_amount'),
                 DB::raw('YEAR(created_at) year, MONTH(created_at) month, DAY(created_at) day')
             )->whereBetween('created_at', [$from, $to])->groupby('day')->get()->toArray();
 
@@ -351,7 +352,7 @@ class DashboardController extends Controller
                 $seller_data[$inc] = 0;
                 foreach ($seller_earnings as $match) {
                     if ($match['day'] == $inc) {
-                        $seller_data[$inc] = $match['seller_amount'];
+                        $seller_data[$inc] = $match['sums'];
                     }
                 }
             }
@@ -370,7 +371,8 @@ class DashboardController extends Controller
                 'seller_is' => 'seller',
                 'status' => 'disburse'
             ])->select(
-                DB::raw('seller_amount'),
+                DB::raw('IFNULL(sum(seller_amount),0) as sums'),
+                //DB::raw('seller_amount'),
                 DB::raw('YEAR(created_at) year, MONTH(created_at) month, DAY(created_at) day')
             )->whereBetween('created_at', [$from, $to])->get()->toArray();
 
@@ -378,7 +380,7 @@ class DashboardController extends Controller
                 $seller_data[$inc] = 0;
                 foreach ($seller_earnings as $match) {
                     if ($match['day'] == $inc) {
-                        $seller_data[$inc] = $match['seller_amount'];
+                        $seller_data[$inc] = $match['sums'];
                     }
                 }
             }
@@ -424,7 +426,8 @@ class DashboardController extends Controller
                 'seller_is' => 'seller',
                 'status' => 'disburse'
             ])->select(
-                DB::raw('admin_commission'),
+                DB::raw('IFNULL(sum(admin_commission),0) as sums'),
+                //DB::raw('admin_commission'),
                 DB::raw('YEAR(created_at) year, MONTH(created_at) month, DAY(created_at) day')
             )->whereBetween('created_at', [$from, $to])->groupby('day')->get()->toArray();
 
@@ -432,7 +435,7 @@ class DashboardController extends Controller
                 $commission_data[$inc] = 0;
                 foreach ($commission_earnings as $match) {
                     if ($match['day'] == $inc) {
-                        $commission_data[$inc] = $match['admin_commission'];
+                        $commission_data[$inc] = $match['sums'];
                     }
                 }
             }
@@ -450,7 +453,8 @@ class DashboardController extends Controller
             $commission_earnings = OrderTransaction::where([
                 'status' => 'disburse'
             ])->select(
-                DB::raw('admin_commission'),
+                DB::raw('IFNULL(sum(admin_commission),0) as sums'),
+                //DB::raw('admin_commission'),
                 DB::raw('YEAR(created_at) year, MONTH(created_at) month, DAY(created_at) day')
             )->whereBetween('created_at', [$from, $to])->get()->toArray();
 
@@ -458,7 +462,7 @@ class DashboardController extends Controller
                 $commission_data[$inc] = 0;
                 foreach ($commission_earnings as $match) {
                     if ($match['day'] == $inc) {
-                        $commission_data[$inc] = $match['admin_commission'];
+                        $commission_data[$inc] = $match['sums'];
                     }
                 }
             }

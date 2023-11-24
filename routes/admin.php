@@ -265,6 +265,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
             Route::get('verification/{id}', 'SellerController@view')->name('verification');
             Route::get('view/{id}/{tab?}', 'SellerController@view')->name('view');
             Route::post('update-status', 'SellerController@updateStatus')->name('updateStatus');
+            Route::post('update-blue', 'SellerController@updateBlue')->name('updateBlue');
             Route::post('withdraw-status/{id}', 'SellerController@withdrawStatus')->name('withdraw_status');
             Route::get('withdraw_list', 'SellerController@withdraw')->name('withdraw_list');
             Route::get('withdraw-view/{withdraw_id}/{seller_id}', 'SellerController@withdraw_view')->name('withdraw_view');
@@ -326,7 +327,12 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
             Route::group(['middleware'=>['module:system_settings']],function (){
                 Route::get('sms-module', 'SMSModuleController@sms_index')->name('sms-module');
                 Route::post('sms-module-update/{sms_module}', 'SMSModuleController@sms_update')->name('sms-module-update');
+
+                //ANK Edit
+                Route::get('mobile-stores', 'BusinessSettingsController@stores')->name('mobile-stores');
             });
+
+
 
 
             Route::group(['prefix' => 'shipping-method', 'as' => 'shipping-method.','middleware'=>['module:system_settings']], function () {
@@ -440,6 +446,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
 
                 Route::get('fcm-index', 'BusinessSettingsController@fcm_index')->name('fcm-index');
                 Route::post('update-fcm', 'BusinessSettingsController@update_fcm')->name('update-fcm');
+
+                
 
                 //captcha
                 Route::get('captcha', 'BusinessSettingsController@recaptcha_index')->name('captcha');

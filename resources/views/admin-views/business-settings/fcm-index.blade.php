@@ -66,6 +66,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h5 class="mb-0">{{\App\CPU\translate('Push Messages')}}</h5>
+                        
                     </div>
                     <div class="card-body">
                         <form action="{{route('admin.business-settings.update-fcm-messages')}}" method="post"

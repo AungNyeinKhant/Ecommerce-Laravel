@@ -68,6 +68,11 @@
                             </thead>
                             <tbody>
                             @foreach($sellers as $key=>$seller)
+                                @php
+                                    if($seller->id == 1 && auth('admin')->user()->admin_role_id != 1){
+                                        continue;
+                                    }
+                                @endphp
                                 <tr>
                                     <td>{{$sellers->firstItem()+$key}}</td>
                                     <td>

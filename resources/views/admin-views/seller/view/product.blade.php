@@ -139,6 +139,7 @@
                                                 {{\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($p['unit_price']))}}
                                             </td>
                                             <td>
+                                                second 
                                                 <label class="mx-auto switcher">
                                                     <input type="checkbox" class="switcher_input"
                                                            onclick="featured_status('{{$p['id']}}')" {{$p->featured == 1?'checked':''}}>
@@ -146,6 +147,7 @@
                                                 </label>
                                             </td>
                                             <td>
+                                            asdfgjhk
                                                 <label class="mx-auto switcher">
                                                     <input type="checkbox" class="switcher_input status"
                                                            id="{{$p['id']}}" {{$p->status == 1?'checked':''}}>
@@ -153,6 +155,7 @@
                                                 </label>
                                             </td>
                                             <td>
+                                               
                                                 <div class="d-flex justify-content-center gap-10">
                                                     <a class="btn btn-outline--primary btn-sm square-btn"
                                                        href="{{route('admin.product.edit',[$p['id']])}}">

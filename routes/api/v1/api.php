@@ -59,6 +59,7 @@ Route::group(['namespace' => 'api\v1', 'prefix' => 'v1', 'middleware' => ['api_l
 
     Route::group(['prefix' => 'products'], function () {
         Route::get('latest', 'ProductController@get_latest_products');
+        Route::get('all', 'ProductController@get_all_products');
         Route::get('featured', 'ProductController@get_featured_products');
         Route::get('top-rated', 'ProductController@get_top_rated_products');
         Route::any('search', 'ProductController@get_searched_products');

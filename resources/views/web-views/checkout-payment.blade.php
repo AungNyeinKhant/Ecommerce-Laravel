@@ -20,7 +20,7 @@
 @endpush
 
 @section('content')
-    <!-- Page Content-->
+    <!-- Page Content is here-->
     <div class="container pb-5 mb-2 mb-md-4 rtl"
          style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
         <div class="row">
@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                         @endif
-
+                        <!-- Ko Ag Pg Pyo Take it from here -->
                         @php($coupon_discount = session()->has('coupon_discount') ? session('coupon_discount') : 0)
                         @php($amount = \App\CPU\CartManager::cart_grand_total() - $coupon_discount)
                         @php($digital_payment=\App\CPU\Helpers::get_business_settings('digital_payment'))
@@ -65,7 +65,8 @@
                                     <div class="card">
                                         <div class="card-body" style="height: 100px">
                                             {{-- <form action="{{route('checkout-complete-wallet')}}" method="get" class="needs-validation"> --}}
-                                                <button class="btn btn-block click-if-alone" type="submit"
+                                                
+                                            <button class="btn btn-block click-if-alone" type="submit"
                                                     data-toggle="modal" data-target="#wallet_submit_button">
 
                                                     <img width="150" style="margin-top: -10px"
@@ -452,6 +453,7 @@
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">{{\App\CPU\translate('close')}}</button>
+            
             <button type="submit" class="btn btn--primary" {{$remain_balance>0? '':'disabled'}}>{{\App\CPU\translate('submit')}}</button>
             </div>
         </form>

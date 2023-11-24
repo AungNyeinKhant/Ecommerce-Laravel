@@ -249,6 +249,7 @@
                         </div>
                     </div>
                     <!-- Product details-->
+                    
                     <div class="col-lg-7 col-md-8 col-12 mt-md-0 mt-sm-3" style="direction: {{ Session::get('direction') }}">
                         <div class="details">
                             <span class="mb-2" style="font-size: 22px;font-weight:700;">{{$product->name}}</span>
@@ -432,6 +433,156 @@
 
                             <div style="text-align:{{Session::get('direction') === "rtl" ? 'right' : 'left'}};"
                                 class="sharethis-inline-share-buttons"></div>
+                            <!-- ANK Edit this -->
+                            
+                            <div style="background: #ffffff; padding: 25px;border-radius: 5px;
+                                font-weight: 400;color: #212629;margin-top: 10px;">
+                                {{--seller section--}}
+                                @if($product->added_by=='seller')
+                                    @if(isset($product->seller->shop))
+                                        <div class="row d-flex justify-content-between">
+                                            <div class="col-4">
+                                                <button class="btn btn-primary" type="button">
+                                                    Facebook
+                                                </button>
+                                                <button class="btn btn-warning" type="button">Text</button>
+                                                <!-- @if (auth('customer')->id() == '')
+                                                <a href="{{route('customer.auth.login')}}">
+                                                    <div class="float-left" style="color:{{$web_config['primary_color']}};background: {{$web_config['primary_color']}}10;padding: 6px 15px 6px 15px;font-size:12px;">
+                                                        <i class="fa fa-envelope"></i>
+                                                    <span>{{\App\CPU\translate('chat')}}</span>
+                                                    </div>
+                                                    </a>
+                                                @else
+                                                    <div id="contact-seller" style="color:{{$web_config['primary_color']}};background: {{$web_config['primary_color']}}10;padding: 6px 15px 6px 15px;font-size:12px;">
+                                                            <i class="fa fa-envelope"></i>
+                                                        <span>{{\App\CPU\translate('chat')}}</span>
+                                                        </div>
+                                                @endif -->
+
+                                            </div>
+                                            <div class="col-8">
+                                                <div class="row d-flex ">
+                                                    <div>
+                                                        <img style="height: 65px; width: 65px; border-radius: 50%"
+                                                            src="{{asset('storage/app/public/shop')}}/{{$product->seller->shop->image}}"
+                                                            onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="{{Session::get('direction') === "rtl" ? 'right' : 'ml-3'}}">
+                                                        <span style="font-weight: 700;font-size: 16px;">
+                                                            {{$product->seller->shop->name}}
+                                                        </span><br>
+                                                        <span>{{\App\CPU\translate('Seller_info')}}</span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            
+                                            <div class="col-12 msg-option mt-2" id="msg-option">
+
+                                                    <form action="">
+                                                    <input type="text" class="seller_id" hidden seller-id="{{$product->seller->id }}">
+                                                    <textarea shop-id="{{$product->seller->shop->id}}" class="chatInputBox"
+                                                            id="chatInputBox" rows="5"> </textarea>
+
+
+                                                    <div class="row">
+                                                        <button class="btn btn-secondary" style="color: white;display: block;width: 47%;margin: 3px;"
+                                                            id="cancelBtn">{{\App\CPU\translate('cancel')}}
+                                                        </button>
+                                                        <button class="btn btn-success " style="color: white;display: block;width: 47%;margin: 3px;"
+                                                            id="sendBtn">{{\App\CPU\translate('send')}}</button>
+                                                    </div>
+
+                                                </form>
+
+                                            </div>
+
+                                            
+                                            <div class="col-12 mt-3">
+                                                <div>
+                                                    <a href="{{ route('shopView',[$product->seller->id]) }}" style="display: block;width:100%;text-align: center">
+                                                        <button class="btn" style="display: block;width:100%;text-align: center;background: {{$web_config['primary_color']}};color:#ffffff">
+                                                            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                                                            {{\App\CPU\translate('Visit Store')}}
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @else
+                                    <div class="row d-flex justify-content-between">
+                                        <div class="col-9 ">
+                                            <div class="row d-flex ">
+                                                <div>
+                                                    <img style="height: 65px; width: 65px; border-radius: 50%"
+                                                        src="{{asset("storage/app/public/company")}}/{{$web_config['fav_icon']->value}}"
+                                                        onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
+                                                        alt="">
+                                                </div>
+                                                <div class="{{Session::get('direction') === "rtl" ? 'right' : 'ml-3'}}">
+                                                    <span style="font-weight: 700;font-size: 16px;">
+                                                        {{$web_config['name']->value}}
+                                                    </span><br>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        @php($products_for_review = App\Model\Product::where('added_by','admin')->where('user_id',$product->user_id)->withCount('reviews')->get())
+
+                                        <?php
+                                        $total_reviews = 0;
+                                            foreach ($products_for_review as $item)
+                                            { $total_reviews += $item->reviews_count;
+                                            }
+                                        ?>
+                                        <div class="col-12 mt-2">
+                                            <div class="row d-flex justify-content-between">
+                                                <div class="col-6 ">
+                                                    <div class="d-flex justify-content-center align-items-center" style="height: 79px;background:{{$web_config['primary_color']}}10;border-radius:5px;">
+                                                        <div class="text-center">
+                                                            <span style="color: {{$web_config['primary_color']}};font-weight: 700;
+                                                            font-size: 26px;">
+                                                                {{$total_reviews}}
+                                                            </span><br>
+                                                            <span style="font-size: 12px;">
+                                                                {{\App\CPU\translate('reviews')}}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="d-flex justify-content-center align-items-center" style="height: 79px;background:{{$web_config['primary_color']}}10;border-radius:5px;">
+                                                        <div class="text-center">
+                                                            <span style="color: {{$web_config['primary_color']}};font-weight: 700;
+                                                            font-size: 26px;">
+                                                                {{$products_for_review->count()}}
+                                                            </span><br>
+                                                            <span style="font-size: 12px;">
+                                                                {{\App\CPU\translate('products')}}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <a href="{{ route('shopView',[0]) }}" style="display: block;width:100%;text-align: center">
+                                                <button class="btn" style="display: block;width:100%;text-align: center;background: {{$web_config['primary_color']}};color:#ffffff">
+                                                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                                                    {{\App\CPU\translate('Visit Store')}}
+                                                </button>
+                                            </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                            <!-- ANK End Here -->
                         </div>
                     </div>
                 </div>
@@ -672,7 +823,8 @@
 
             </div>
             <div class="col-md-3 ">
-                <div class="product-details-shipping-details">
+                
+            <!-- <div class="product-details-shipping-details">
                     <div class="shipping-details-bottom-border">
                         <div style="padding: 25px;">
                             <img class="{{Session::get('direction') === "rtl" ? 'float-right ml-2' : 'mr-2'}}" style="height: 20px;width:20px;" src="{{asset("public/assets/front-end/png/Payment.png")}}"
@@ -876,7 +1028,8 @@
                             </div>
                         </div>
                     @endif
-                </div>
+                </div> -->
+
                 @php($more_product_from_seller = App\Model\Product::active()->where('added_by',$product->added_by)->where('user_id',$product->user_id)->latest()->take(5)->get())
                 <div style="padding: 25px;">
                     <div class="row d-flex justify-content-center">
@@ -1052,7 +1205,7 @@
         });
     </script>
 
-    <script type="text/javascript"
+    <!-- <script type="text/javascript"
             src="https://platform-api.sharethis.com/js/sharethis.js#property=5f55f75bde227f0012147049&product=sticky-share-buttons"
-            async="async"></script>
+            async="async"></script> -->
 @endpush

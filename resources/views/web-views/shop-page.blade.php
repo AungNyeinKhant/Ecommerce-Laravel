@@ -246,8 +246,18 @@
                                 <span class="ml-4 font-weight-bold ">
                                     @if($shop['id'] != 0)
                                         {{ $shop->name}}
+                                        @if($shop->blue_m == 1)
+                                                                
+                                                <img src="{{asset('storage/app/icon/blueMark.png')}}" style="width:20px; height:20px;" alt="Blue Mark Icon">
+                                        
+                                        @endif
                                     @else
                                         {{ $web_config['name']->value }}
+                                        @if($shop->blue_m == 1)
+                                                                
+                                                <img src="{{asset('storage/app/icon/blueMark.png')}}" style="width:20px; height:20px;" alt="Blue Mark Icon">
+                                        
+                                        @endif
                                     @endif
                                 </span>
                                 <div class="row ml-4 flex-start">
